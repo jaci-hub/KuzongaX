@@ -1,15 +1,15 @@
-from kuzongax.inspection.inspector import Inspector
+from kuzongax.envs.kuzongax_main import KuzongaX
 
 
 if __name__ == "__main__":
-    # action
+    # LLM input action
     action = {
-        "v": True,
-        "g": 4,
-        "r": None
+        "v": 0,
+        "g": 7,
+        "r": 0
     }
     
-    # state
+    # LLM input state
     state = {
         "s": 19,
         "d": 59,
@@ -18,7 +18,7 @@ if __name__ == "__main__":
         "t": 0
     }
     
-    # initialize inspector
-    inspector = Inspector(action=action, state=state)
-    inspector.inspect_all()
-    
+    env = KuzongaX(state=state)
+    env.start()
+        
+    print(env.get_result())

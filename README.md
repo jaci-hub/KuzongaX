@@ -1,6 +1,6 @@
-# Divide21X — A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs)
+# KuzongaX — A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs)
 
-Divide21X is a daily, automated benchmark that evaluates the symbolic mathematical reasoning of Large Language Models (LLMs).
+KuzongaX is a daily, automated benchmark that evaluates the symbolic mathematical reasoning of Large Language Models (LLMs).
 Every day, a challenge is generated, sent to multiple LLM APIs, and graded against a deterministic simulator.
 The goal is to measure true reasoning ability, not pattern recognition, memorization, or heuristics.
 
@@ -21,7 +21,7 @@ It is a pure reasoning benchmark, because it isolates:
 Just mathematical, symbolic, rule-based cognition.
 
 
-# What does Divide21X Measure?
+# What does KuzongaX Measure?
 
 ### 1. True Symbolic Mathematical Reasoning
 
@@ -55,7 +55,7 @@ Each example and challenge includes:
 
 - final state (`o`) — missing in the challenge
 
-Models must compute the correct final state, following the rules of the Divide21 environment.
+Models must compute the correct final state, following the rules of the Kuzonga environment.
 
 This tests:
 
@@ -70,7 +70,7 @@ This tests:
 
 ### 3. Exact, Verifiable Outputs
 
-Every predicted final state is compared field-by-field to the ground-truth computed by the Divide21 simulator.
+Every predicted final state is compared field-by-field to the ground-truth computed by the Kuzonga simulator.
 Scores are deterministic, numeric, and interpretable.
 
 Scoring measures:
@@ -82,7 +82,7 @@ Scoring measures:
 - Error distance for each field
 
 
-In addition, Divide21X:
+In addition, KuzongaX:
 
 - Requires mathematical exactness
 
@@ -105,7 +105,7 @@ In addition, Divide21X:
 	- Which makes statistical scoring extremely precise over time.
 
 
-Essentially, Divide21X is a stress test for true reasoning. LLMs that perform well demonstrate:
+Essentially, KuzongaX is a stress test for true reasoning. LLMs that perform well demonstrate:
 
 - Arithmetic precision
 
@@ -157,7 +157,7 @@ The benchmark runs once per day via GitHub Actions:
 
 A JSON challenge is created at:
 
-`divide21x/challenges/<year-month>/<day>.json`
+`kuzongax/challenges/<year-month>/<day>.json`
 
 
 ### 2. Query All LLM APIs
@@ -183,7 +183,7 @@ Supported APIs include:
 
 ### 3. Evaluate Model Outputs
 
-The Divide21 simulator computes the real final state.
+The Kuzonga simulator computes the real final state.
 Each LLM’s prediction is compared numerically and structurally.
 
 
@@ -191,11 +191,11 @@ Each LLM’s prediction is compared numerically and structurally.
 
 - Scores are stored at:
 
-  `divide21x/results/<year-month>/<day>.json`
+  `kuzongax/results/<year-month>/<day>.json`
 
 - Leaderboards are stored at:
 
-  `divide21x/leaderboards/<year-month>/<day>.json`
+  `kuzongax/leaderboards/<year-month>/<day>.json`
 
 
 ### 5. Commit to Repository
@@ -206,18 +206,18 @@ This creates a public, chronological leaderboard of reasoning performance.
 
 ## Cite This Project
 
-If you use Divide21X in your research, projects, or publications, please cite it as:
+If you use KuzongaX in your research, projects, or publications, please cite it as:
 
-Jacinto Jeje Matamba Quimua (2025). Divide21X: A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs). GitHub repository: https://github.com/jaci-hub/divide21X
+Jacinto Jeje Matamba Quimua (2025). KuzongaX: A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs). GitHub repository: https://github.com/jaci-hub/kuzongaX
 
 
 ### BibTeX
 
 ```bibtex
-@misc{divide21x2025,
+@misc{kuzongax2025,
   author       = {Jacinto Jeje Matamba Quimua},
-  title        = {Divide21X: A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs)},
+  title        = {KuzongaX: A Deterministic Symbolic Reasoning Benchmark for Large Language Models (LLMs)},
   year         = 2025,
-  howpublished = {\url{https://github.com/jaci-hub/divide21X}},
+  howpublished = {\url{https://github.com/jaci-hub/kuzongaX}},
 }
 ```

@@ -1,9 +1,9 @@
 import json
-from divide21x.challenge_maker.challenge_maker import ChallengeMaker
-from divide21x.llm_api.client_class import ModelClient
-from divide21x.llm_api.requestor import Requestor
-from divide21x.utils.logger import EpisodeLogger
-from divide21x.utils.util import get_llm_registry
+from kuzongax.challenge_maker.challenge_maker import ChallengeMaker
+from kuzongax.llm_api.client_class import ModelClient
+from kuzongax.llm_api.requestor import Requestor
+from kuzongax.utils.logger import EpisodeLogger
+from kuzongax.utils.util import get_llm_registry
 
 
 # base dir

@@ -1,5 +1,5 @@
 import random
-from divide21x.simulator.divide21env_simulator import Divide21EnvSimulator
+from kuzongax.simulator.kuzongaenv_simulator import KuzongaEnvSimulator
 
 
 if __name__ == "__main__":
@@ -15,8 +15,8 @@ if __name__ == "__main__":
         'obs': state
     }
     #   set state
-    divide21env_simulator = Divide21EnvSimulator()
-    obs, info = divide21env_simulator.reset(options=options)
+    kuzongaenv_simulator = KuzongaEnvSimulator()
+    obs, info = kuzongaenv_simulator.reset(options=options)
     
     # create action
     division = bool(random.randint(0, 1))
@@ -26,7 +26,7 @@ if __name__ == "__main__":
         "r": int(random.randint(0, 1)) if not division else None
     }
     # apply action
-    obs, reward, done, trunc, info = divide21env_simulator.step(action)
-    obs = divide21env_simulator._decode_state(obs)
+    obs, reward, done, trunc, info = kuzongaenv_simulator.step(action)
+    obs = kuzongaenv_simulator._decode_state(obs)
 
     

@@ -1,5 +1,5 @@
 
-from divide21x.challenge_maker.challenge_maker import ChallengeMaker
+from kuzongax.challenge_maker.challenge_maker import ChallengeMaker
 
 
 if __name__ == "__main__":

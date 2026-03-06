@@ -3,16 +3,16 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "divide21x"
+name = "kuzongax"
 version = "0.1.0"
-description = "Divide21X Phase 1: Action-State benchmark environment for faithful strategic reasoning."
+description = "KuzongaX Phase 1: Action-State benchmark environment for faithful strategic reasoning."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
     { name = "Jacinto Jeje Matamba Quimua" }
 ]
-keywords = ["Explainable AI", "Reinforcement Learning", "Symbolic AI", "Benchmark", "Divide21"]
+keywords = ["Explainable AI", "Reinforcement Learning", "Symbolic AI", "Benchmark", "Kuzonga"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -23,9 +23,9 @@ classifiers = [
 dependencies = [
     "gymnasium>=0.29",
     "numpy>=1.23",
-    "divide21env>=0.2.8",
+    "kuzongaenv>=0.2.9",
 ]
 
 [project.urls]
-Homepage = "https://github.com/jaci-hub/divide21x"
-Repository = "https://github.com/jaci-hub/divide21x"
+Homepage = "https://github.com/jaci-hub/kuzongax"
+Repository = "https://github.com/jaci-hub/kuzongax"

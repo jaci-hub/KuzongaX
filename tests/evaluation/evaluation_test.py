@@ -1,4 +1,4 @@
-from divide21x.evaluation.evaluator import Evaluator
+from kuzongax.evaluation.evaluator import Evaluator
 
 
 
