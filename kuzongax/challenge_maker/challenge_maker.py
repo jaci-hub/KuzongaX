@@ -1,7 +1,10 @@
 import json
 import os
 import datetime, hashlib, random
-from kuzongax.simulator.kuzongaenv_simulator import KuzongaEnvSimulator
+import gymnasium as gym
+from gymnasium import spaces
+import kuzongaenv
+from kuzongaenv.envs.kuzonga_env import KuzongaEnv
 from kuzongax.utils.logger import EpisodeLogger
 from kuzongax.utils.util import get_utc_date, get_utc_datetime, get_utc_day, get_utc_hour
 
@@ -156,8 +159,12 @@ class ChallengeMaker():
         #   get player number between 2 and day_after
         players = random.randint(2, day_after)
         #   set state
-        kuzongaenv_simulator = KuzongaEnvSimulator(digits=day_after, players=players)
-        obs, info = kuzongaenv_simulator.reset(seed=seed)
+        base_env = gym.make(
+            "Kuzonga-v0",
+            digits=day_after,
+            players=players
+        )
+        obs, info = base_env.reset(seed=seed)
         
         #   play for at least 100 actions - this prevents the initial state from always being given
         state_collection = []
@@ -170,8 +177,8 @@ class ChallengeMaker():
                 "r": int(random.randint(0, day_after-1)) if not division else None
             }
             # apply action
-            obs, reward, done, trunc, info = kuzongaenv_simulator.step(action)
-            obs = kuzongaenv_simulator._decode_state(obs)
+            obs, reward, done, trunc, info = base_env.step(action)
+            obs = info['obs_decoded']
             state_collection.append(obs)
             # update day_after
             day_after = len(str(obs["d"]))
