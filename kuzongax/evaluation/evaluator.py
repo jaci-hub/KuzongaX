@@ -6,7 +6,6 @@ import kuzongaenv
 from kuzongaenv.envs.kuzonga_env import KuzongaEnv
 from kuzongax.challenge_maker.challenge_maker import ChallengeMaker
 from kuzongax.inspection.inspector import Inspector
-from kuzongax.simulator.kuzongaenv_simulator import KuzongaEnvSimulator
 import numpy as np
 import math
 from kuzongax.utils.logger import EpisodeLogger
@@ -40,6 +39,9 @@ class Evaluator(Inspector):
         self.points_to_deduct = 0
         self.ground_truth_action_score = 0
         self.ground_truth_state_score = 0
+
+        # initialize the environment
+        self.base_env = gym.make("Kuzonga-v0")
         
         # Logging
         self.logger = EpisodeLogger(BASE_DIR)
@@ -293,9 +295,9 @@ class Evaluator(Inspector):
         checks if the given action implies/generates the given state
         '''
         # get the generated state by applying the given action on the given state
-        kuzongaenv_simulator = KuzongaEnvSimulator(given_obs=self.state)
-        obs, reward, terminated, truncated, info = kuzongaenv_simulator.step(self.action)
-        self.generated_state = kuzongaenv_simulator._decode_state(obs)
+        obs, info = self.base_env.reset(options={'obs': self.state})
+        obs, reward, terminated, truncated, info = self.base_env.step(self.action)
+        self.generated_state = info['obs_decoded']
         
         # compare the given state to the generated state
         states_are_equivalent, states_similarity_score = self.compare_states()
@@ -310,9 +312,9 @@ class Evaluator(Inspector):
         ground_truth = GroundTruth(self.state)
         ground_truth_action = ground_truth.get_action()
         # generate state from the optimal action
-        kuzongaenv_simulator = KuzongaEnvSimulator(given_obs=self.state)
-        obs, reward, terminated, truncated, info = kuzongaenv_simulator.step(ground_truth_action)
-        ground_truth_state = kuzongaenv_simulator._decode_state(obs)
+        obs, info = self.base_env.reset(options={'obs': self.state})
+        obs, reward, terminated, truncated, info = self.base_env.step(ground_truth_action)
+        ground_truth_state = info['obs_decoded']
         
         # (1) action
         action_are_equivalent, action_similarity_score = self.compare_actions(self.action, ground_truth_action)
@@ -347,13 +349,9 @@ class Evaluator(Inspector):
         challenge_action = data["challenge"]["a"]
         
         # generate state from the action given in the challenge
-        kuzongaenv_simulator = KuzongaEnvSimulator()
-        options = {
-            'obs': challenge_state
-        }
-        obs, info = kuzongaenv_simulator.reset(options=options)
-        obs, reward, terminated, truncated, info = kuzongaenv_simulator.step(challenge_action)
-        ground_truth_state = kuzongaenv_simulator._decode_state(obs)
+        obs, info = self.base_env.reset(options={'obs': challenge_state})
+        obs, reward, terminated, truncated, info = self.base_env.step(challenge_action)
+        ground_truth_state = info['obs_decoded']
         
         # compare states
         states_are_equivalent, states_similarity_score = self.compare_states(self.state, ground_truth_state)
