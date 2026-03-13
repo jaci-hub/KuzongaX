@@ -9,7 +9,7 @@ setup(
     install_requires=[
         "gymnasium>=0.29",
         "numpy>=1.23",
-        "kuzongaenv>=0.3.2",
+        "kuzongaenv>=0.3.3",
     ],
     python_requires=">=3.10",
 )
